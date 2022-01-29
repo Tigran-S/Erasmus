@@ -12,13 +12,19 @@ import "react-toastify/dist/ReactToastify.css";
 import Projects from "./pages/projects/Projects";
 import News from "./pages/news/news";
 import CreativeParticipants from "./pages/creativeParticipants/creativeParticipants";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(false);
+  const [user, setUser] = useState({});
+  const currentUser = user?.email === "tigran_sargsyan@mail.ru";
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+  });
   return (
     <>
       <Router>
-        <Topbar currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        <Topbar currentUser={currentUser} />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/about" element={<About />} />
@@ -38,10 +44,7 @@ function App() {
             element={currentUser ? <Write /> : <Homepage />}
           />
           <Route path="/settings" element={<Settings />} />
-          <Route
-            path="/login"
-            element={<LoginForm setCurrentUser={setCurrentUser} />}
-          />
+          <Route path="/login" element={<LoginForm setUser={setUser} />} />
         </Routes>
       </Router>
     </>

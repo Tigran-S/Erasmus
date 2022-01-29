@@ -1,13 +1,9 @@
 import "./settings.css";
 import Sidebar from "../../components/sidebar/Sidebar";
-import { user } from "../login/loginData";
 
 export default function Settings() {
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.password.value);
-    user.USERNAME = e.target.email.value;
-    user.PASSWORD = e.target.password.value;
   };
   return (
     <div className="settings">

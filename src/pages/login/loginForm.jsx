@@ -1,26 +1,30 @@
 import React, { useState } from "react";
-import { user } from "./loginData";
 import { useNavigate } from "react-router-dom";
 import Joi from "joi-browser";
 import Input from "../contact/input";
 import { validate, handleChange, handleSubmit } from "./../contact/form";
-
+import { auth } from "../../firebase";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 const schema = {
   username: Joi.string().required().label("Username"),
   password: Joi.string().required().label("Password"),
 };
-const { USERNAME, PASSWORD } = user;
-console.log(USERNAME, PASSWORD);
-const LoginForm = ({ setCurrentUser }) => {
+
+const LoginForm = ({ setUser }) => {
   const [login, setLogin] = useState({ username: "", password: "" });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
-  console.log(login);
-  const doSubmit = () => {
-    if (login.username === USERNAME && login.password === PASSWORD) {
-      setCurrentUser(true);
-      navigate("/");
+  const loggingIn = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, login.username, login.password);
+    } catch (error) {
+      console.log(error.message);
     }
+  };
+
+  const doSubmit = () => {
+    loggingIn(login.username, login.password);
+    navigate("/");
   };
 
   return (

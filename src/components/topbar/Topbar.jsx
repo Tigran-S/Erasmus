@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 import "./topbar.css";
 
-export default function Topbar({ currentUser, setCurrentUser }) {
-  const user = true;
+export default function Topbar({ currentUser }) {
+  const logout = async () => {
+    await signOut(auth);
+  };
   return (
     <div className="top">
       <div className="topCenter">
@@ -45,12 +49,7 @@ export default function Topbar({ currentUser, setCurrentUser }) {
             </li>
           )}
           {currentUser && (
-            <li
-              className="topListItem"
-              onClick={() => {
-                setCurrentUser(false);
-              }}
-            >
+            <li className="topListItem" onClick={logout}>
               LOGOUT
             </li>
           )}
