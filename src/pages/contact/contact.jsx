@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
+import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import Joi from "joi-browser";
 import Input from "./input";
 import { validate, handleChange, handleSubmit } from "./form";
@@ -7,12 +9,14 @@ const schema = {
   email: Joi.string().email().required().label("Email"),
   phoneNumber: Joi.string().min(5).required().label("Phone Number"),
   name: Joi.string().required().label("Name"),
+  fbLink: Joi.string().required().label("Facebook Link"),
 };
 const Contact = () => {
   const [register, setRegister] = useState({
     email: "",
     phoneNumber: "",
     name: "",
+    fbLink: "",
   });
   const [errors, setErrors] = useState({});
 
@@ -27,59 +31,72 @@ const Contact = () => {
       )
       .then(
         (result) => {
-          console.log(result.text);
+          toast("The message was sent");
+          console.log(result);
         },
         (error) => {
-          console.log(error.text);
+          toast.error("An unexpected error occured");
         }
       );
-    console.log(e.target);
-    e.target.reset();
+    setRegister({ email: "", phoneNumber: "", name: "", fbLink: "" });
   };
 
   return (
-    <div className="form">
-      <h1>CONTACT US</h1>
-      <form
-        onSubmit={(e) => handleSubmit(e, setErrors, register, schema, doSubmit)}
-      >
-        <Input
-          name="name"
-          value={register.name}
-          label="Name"
-          handleChange={(e) =>
-            handleChange(e, errors, register, setRegister, setErrors, schema)
+    <>
+      <div className="form">
+        <h1>CONTACT US</h1>
+        <form
+          onSubmit={(e) =>
+            handleSubmit(e, setErrors, register, schema, doSubmit)
           }
-          error={errors.name}
-        />
-        <Input
-          name="email"
-          value={register.email}
-          label="Email"
-          handleChange={(e) =>
-            handleChange(e, errors, register, setRegister, setErrors, schema)
-          }
-          error={errors.email}
-        />
-        <Input
-          name="phoneNumber"
-          value={register.phoneNumber}
-          label="Phone Number"
-          type="tel"
-          handleChange={(e) =>
-            handleChange(e, errors, register, setRegister, setErrors, schema)
-          }
-          error={errors.phoneNumber}
-        />
-
-        <button
-          className="btn btn-primary"
-          disabled={validate(register, schema)}
         >
-          SEND
-        </button>
-      </form>
-    </div>
+          <ToastContainer />
+          <Input
+            name="name"
+            value={register.name}
+            label="Name"
+            handleChange={(e) =>
+              handleChange(e, errors, register, setRegister, setErrors, schema)
+            }
+            error={errors.name}
+          />
+          <Input
+            name="email"
+            value={register.email}
+            label="Email"
+            handleChange={(e) =>
+              handleChange(e, errors, register, setRegister, setErrors, schema)
+            }
+            error={errors.email}
+          />
+          <Input
+            name="phoneNumber"
+            value={register.phoneNumber}
+            label="Phone Number"
+            type="tel"
+            handleChange={(e) =>
+              handleChange(e, errors, register, setRegister, setErrors, schema)
+            }
+            error={errors.phoneNumber}
+          />
+          <Input
+            name="fbLink"
+            value={register.fbLink}
+            label="Facebook Link"
+            handleChange={(e) =>
+              handleChange(e, errors, register, setRegister, setErrors, schema)
+            }
+            error={errors.name}
+          />
+          <button
+            className="btn btn-primary"
+            disabled={validate(register, schema)}
+          >
+            SEND
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 

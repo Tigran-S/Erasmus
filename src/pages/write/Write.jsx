@@ -19,7 +19,13 @@ export default function Write() {
   const doSubmit = (e) => {
     e.preventDefault();
     const date = new Date().toDateString();
-    addNewPost(e.target.title.value, e.target.text.value, photo, date);
+    addNewPost(
+      e.target.title.value,
+      e.target.text.value,
+      photo,
+      date,
+      e.target.options.value
+    );
     navigate("/");
   };
   return (
@@ -49,6 +55,17 @@ export default function Write() {
             name="title"
             autoFocus={true}
           />
+          <div>
+            <select
+              name="options"
+              className="form-control"
+              aria-label="Default select example"
+            >
+              <option>Projects</option>
+              <option>News</option>
+              <option>Participants</option>
+            </select>
+          </div>
         </div>
         <div className="writeFormGroup">
           <textarea

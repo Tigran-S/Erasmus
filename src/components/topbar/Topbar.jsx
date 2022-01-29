@@ -5,20 +5,26 @@ export default function Topbar({ currentUser, setCurrentUser }) {
   const user = true;
   return (
     <div className="top">
-      <div className="topLeft">
-        <a
-          href="https://www.facebook.com/creativeyouthNGO"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <i className="topIcon fab fa-facebook-square"></i>
-        </a>
-      </div>
       <div className="topCenter">
         <ul className="topList">
           <li className="topListItem">
             <Link className="link" to="/">
               HOME
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/projects">
+              PROJECTS
+            </Link>
+          </li>{" "}
+          <li className="topListItem">
+            <Link className="link" to="/news">
+              NEWS
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/creativeParticipants">
+              CREATIVE PARTICIPANTS
             </Link>
           </li>
           <li className="topListItem">
