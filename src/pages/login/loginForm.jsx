@@ -4,7 +4,7 @@ import Joi from "joi-browser";
 import Input from "../contact/input";
 import { validate, handleChange, handleSubmit } from "./../contact/form";
 import { auth } from "../../firebase";
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 const schema = {
   username: Joi.string().required().label("Username"),
   password: Joi.string().required().label("Password"),

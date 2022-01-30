@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import emailjs from "emailjs-com";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
 import Joi from "joi-browser";
 import Input from "./input";
 import { validate, handleChange, handleSubmit } from "./form";
+import { useLocation } from "react-router-dom";
+import "./input.css";
 const schema = {
   email: Joi.string().email().required().label("Email"),
   phoneNumber: Joi.string().min(5).required().label("Phone Number"),
@@ -18,10 +20,19 @@ const Contact = () => {
     name: "",
     fbLink: "",
   });
+  const [subject, setSubject] = useState({});
   const [errors, setErrors] = useState({});
 
+  const location = useLocation();
+  useEffect(() => {
+    if (location?.state) {
+      const { from } = location?.state;
+      setSubject(from);
+    }
+  }, [location]);
   const doSubmit = (e) => {
     e.preventDefault();
+
     emailjs
       .sendForm(
         "service_ivg0qcg",
@@ -51,6 +62,17 @@ const Contact = () => {
           }
         >
           <ToastContainer />
+          {subject?.title && (
+            <div className="form-group">
+              Subject
+              <input
+                value={subject?.title}
+                name="subject"
+                className="form-control danger"
+                readOnly
+              />
+            </div>
+          )}
           <Input
             name="name"
             value={register.name}

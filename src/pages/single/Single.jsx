@@ -2,10 +2,10 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import SinglePost from "../../components/singlePost/SinglePost";
 import "./single.css";
 
-export default function Single({ currentUser }) {
+export default function Single({ currentUser, posts }) {
   return (
     <div className="single">
-      <SinglePost currentUser={currentUser} />
+      <SinglePost currentUser={currentUser} posts={posts} />
       <Sidebar />
     </div>
   );

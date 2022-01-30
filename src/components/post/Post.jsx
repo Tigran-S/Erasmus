@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 import "./post.css";
 import "./posts.css";
-import { postArray } from "../../pages/write/newPost";
 
-export default function Post() {
+export default function Post({ posts }) {
   return (
     <div className="posts">
-      {postArray.map((post) => {
+      {posts?.map((post) => {
         return (
           <div className="post" key={post.id}>
             <img className="postImg" src={post.image} alt="" />

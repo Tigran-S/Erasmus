@@ -1,10 +1,20 @@
 import { addNewPost } from "./newPost";
-import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "./write.css";
 import { useNavigate } from "react-router-dom";
 
+//TODO: complete edit function
 export default function Write() {
   const [photo, setPhoto] = useState(null);
+  const [updatePost, setUpdatePost] = useState({});
+  const location = useLocation();
+  useEffect(() => {
+    if (location?.state) {
+      setUpdatePost(location?.state);
+    }
+  }, [location]);
+  console.log(updatePost);
   const navigate = useNavigate();
   const imageHandler = (e) => {
     const reader = new FileReader();
@@ -27,6 +37,9 @@ export default function Write() {
       e.target.options.value
     );
     navigate("/");
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
   return (
     <div className="write">
@@ -47,12 +60,14 @@ export default function Write() {
             style={{ display: "none" }}
             name="photo"
             onChange={imageHandler}
+            src={updatePost?.image}
           />
           <input
             className="writeInput"
             placeholder="Title"
             type="text"
             name="title"
+            value={updatePost?.title}
             autoFocus={true}
           />
           <div>
@@ -73,6 +88,7 @@ export default function Write() {
             placeholder="Tell your story..."
             type="text"
             name="text"
+            value={updatePost?.text}
             autoFocus={true}
           />
         </div>

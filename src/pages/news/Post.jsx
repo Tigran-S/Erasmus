@@ -1,12 +1,16 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../components/post/post.css";
 import "../../components/post/posts.css";
-import { newsArray } from "../../pages/write/newPost";
 
-export default function Post() {
+export default function Post({ posts }) {
+  const [news, setNews] = useState([]);
+  useEffect(() => {
+    setNews(posts.filter((el) => el.category === "News"));
+  }, [posts]);
   return (
     <div className="posts">
-      {newsArray.map((post) => {
+      {news.map((post) => {
         return (
           <div className="post" key={post.id}>
             <img className="postImg" src={post.image} alt="" />

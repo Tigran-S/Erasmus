@@ -4,7 +4,7 @@ import HeaderProject from "./../projects/headerProject";
 import "../projects/projects.css";
 import Post from "./Post";
 
-const News = () => {
+const News = ({ posts }) => {
   return (
     <>
       <HeaderProject
@@ -12,7 +12,7 @@ const News = () => {
         src="https://images.pexels.com/photos/4560150/pexels-photo-4560150.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
       />
       <div className="home">
-        <Post />
+        <Post posts={posts} />
         <Sidebar />
       </div>
     </>
