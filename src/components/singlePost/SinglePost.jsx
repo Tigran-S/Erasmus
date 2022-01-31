@@ -3,6 +3,14 @@ import { Link } from "react-router-dom";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  LinkedinIcon,
+} from "react-share";
 import "./singlePost.css";
 import "../../pages/about/about.css";
 
@@ -24,7 +32,6 @@ export default function SinglePost({ currentUser, posts }) {
       window.location.reload();
     }, 1000);
   };
-
   return (
     <>
       {post.map((el) => {
@@ -55,6 +62,28 @@ export default function SinglePost({ currentUser, posts }) {
                 <span>{el.date}</span>
               </div>
               <p className="singlePostDesc">{el.text}</p>
+              <div>
+                <FacebookShareButton
+                  style={{ outline: "none" }}
+                  className="shareButton"
+                  url={window.location.href}
+                >
+                  <FacebookIcon className="shareIcon"></FacebookIcon>
+                </FacebookShareButton>
+                <LinkedinShareButton
+                  style={{ outline: "none" }}
+                  className="shareButton"
+                  url={window.location.href}
+                >
+                  <LinkedinIcon className="shareIcon"></LinkedinIcon>
+                </LinkedinShareButton>
+                <TwitterShareButton
+                  style={{ outline: "none" }}
+                  url={window.location.href}
+                >
+                  <TwitterIcon className="shareIcon"></TwitterIcon>
+                </TwitterShareButton>
+              </div>
               {el.category === "Projects" && (
                 <div
                   style={{

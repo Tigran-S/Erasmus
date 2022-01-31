@@ -47,7 +47,7 @@
   font-family: "Varela Round", Arial, Helvetica, sans-serif;
 }
 
-.singlePostAuthor{
+.singlePostAuthor {
   margin-left: 5px;
 }
 
@@ -61,4 +61,11 @@
   margin-left: 20px;
   font-size: 30px;
   font-weight: 600;
+}
+.shareIcon {
+  width: 30px;
+  margin-left: 5px;
+}
+.shareButton {
+  outline: "none";
 }
