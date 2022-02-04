@@ -32,7 +32,6 @@ const Contact = () => {
   }, [location]);
   const doSubmit = (e) => {
     e.preventDefault();
-
     emailjs
       .sendForm(
         "service_ivg0qcg",
@@ -60,6 +59,7 @@ const Contact = () => {
           onSubmit={(e) =>
             handleSubmit(e, setErrors, register, schema, doSubmit)
           }
+          style={{ marginBottom: "40px" }}
         >
           <ToastContainer />
           {subject?.title && (

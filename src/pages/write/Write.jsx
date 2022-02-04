@@ -1,26 +1,30 @@
-import { addNewPost } from "./newPost";
+import { addNewPost, updatePost } from "./newPost";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./write.css";
 import { useNavigate } from "react-router-dom";
 
-//TODO: complete edit function
+//TODO: add downloadable file function
+//TODO:  add multiple image download function
 export default function Write() {
-  const [photo, setPhoto] = useState(null);
-  const [updatePost, setUpdatePost] = useState({});
+  const [post, setPost] = useState({
+    title: "",
+    text: "",
+    image: null,
+  });
   const location = useLocation();
   useEffect(() => {
     if (location?.state) {
-      setUpdatePost(location?.state);
+      setPost(location?.state);
     }
   }, [location]);
-  console.log(updatePost);
+  console.log(post);
   const navigate = useNavigate();
   const imageHandler = (e) => {
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
-        setPhoto(reader.result);
+        setPost((prev) => ({ ...prev, image: reader.result }));
       }
     };
     reader.readAsDataURL(e.target.files[0]);
@@ -29,13 +33,17 @@ export default function Write() {
   const doSubmit = (e) => {
     e.preventDefault();
     const date = new Date().toDateString();
-    addNewPost(
-      e.target.title.value,
-      e.target.text.value,
-      photo,
-      date,
-      e.target.options.value
-    );
+    if (location?.state) {
+      updatePost(location?.state?.id, post);
+    } else {
+      addNewPost(
+        post.title,
+        post.text,
+        post.image,
+        date,
+        e.target.options.value
+      );
+    }
     navigate("/");
     setTimeout(() => {
       window.location.reload();
@@ -60,14 +68,17 @@ export default function Write() {
             style={{ display: "none" }}
             name="photo"
             onChange={imageHandler}
-            src={updatePost?.image}
+            src={post?.image}
           />
           <input
             className="writeInput"
             placeholder="Title"
             type="text"
             name="title"
-            value={updatePost?.title}
+            value={post?.title}
+            onChange={(e) => {
+              setPost((prev) => ({ ...prev, title: e.target.value }));
+            }}
             autoFocus={true}
           />
           <div>
@@ -88,12 +99,15 @@ export default function Write() {
             placeholder="Tell your story..."
             type="text"
             name="text"
-            value={updatePost?.text}
+            value={post?.text}
             autoFocus={true}
+            onChange={(e) => {
+              setPost((prev) => ({ ...prev, text: e.target.value }));
+            }}
           />
         </div>
         <button className="writeSubmit" type="submit">
-          Publish
+          {location.state ? "Update" : "Publish"}
         </button>
       </form>
     </div>

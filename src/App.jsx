@@ -17,6 +17,7 @@ import { usersCollectionRef } from "./pages/write/newPost";
 import { getDocs } from "firebase/firestore";
 
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "./components/footer/footer";
 
 function App() {
   const [user, setUser] = useState({});
@@ -60,6 +61,7 @@ function App() {
           <Route path="/settings" element={<Settings />} />
           <Route path="/login" element={<LoginForm setUser={setUser} />} />
         </Routes>
+        <Footer />
       </Router>
     </>
   );
