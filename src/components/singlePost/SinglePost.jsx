@@ -62,6 +62,9 @@ export default function SinglePost({ currentUser, posts }) {
                 <span>{el.date}</span>
               </div>
               <p className="singlePostDesc">{el.text}</p>
+              <a href={el.file} target="_blank" rel="noreferrer" download>
+                Info
+              </a>
               <div>
                 <FacebookShareButton
                   style={{ outline: "none" }}

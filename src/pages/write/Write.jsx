@@ -1,16 +1,16 @@
-import { addNewPost, updatePost } from "./newPost";
+import { addNewPost, updatePost, uploadFile } from "./newPost";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./write.css";
 import { useNavigate } from "react-router-dom";
 
-//TODO: add downloadable file function
 //TODO:  add multiple image download function
 export default function Write() {
   const [post, setPost] = useState({
     title: "",
     text: "",
     image: null,
+    file: "",
   });
   const location = useLocation();
   useEffect(() => {
@@ -41,7 +41,8 @@ export default function Write() {
         post.text,
         post.image,
         date,
-        e.target.options.value
+        e.target.options.value,
+        post.file
       );
     }
     navigate("/");
@@ -49,6 +50,11 @@ export default function Write() {
       window.location.reload();
     }, 1000);
   };
+  const fileHandler = (e) => {
+    const file = e.target.files[0];
+    uploadFile(file, setPost);
+  };
+
   return (
     <div className="write">
       <img
@@ -69,6 +75,26 @@ export default function Write() {
             name="photo"
             onChange={imageHandler}
             src={post?.image}
+          />
+          <label htmlFor="fileInput2" style={{ fontSize: "1.5rem" }}>
+            <i
+              className="fas fa-file-pdf"
+              style={{
+                color: "gray",
+                marginLeft: "10px",
+                cursor: "pointer",
+              }}
+            ></i>
+          </label>
+          <input
+            id="fileInput2"
+            type="file"
+            accept="application/pdf"
+            style={{ display: "none" }}
+            name="file"
+            onChange={(e) => {
+              fileHandler(e);
+            }}
           />
           <input
             className="writeInput"

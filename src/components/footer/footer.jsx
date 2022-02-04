@@ -15,9 +15,9 @@ function Footer() {
             <p className="font-italic text-muted">YEREVAN, ARMENIA</p>
             <ul className="list-inline mt-4">
               <li className="list-inline-item">
-                <a href="#" target="_blank" title="facebook">
+                {/* <a href="#" target="_blank" title="facebook">
                   <i className="fa fa-facebook"></i>
-                </a>
+                </a> */}
               </li>
             </ul>
           </div>
@@ -65,27 +65,28 @@ function Footer() {
             <h6 className="text-uppercase font-weight-bold mb-4">Newsletter</h6>
             <p className="text-muted mb-4">SUBSCRIBE FOR OUR NEWSLETTER</p>
             <div className="p-1 rounded border">
-              <div className="input-group">
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    emailjs
-                      .sendForm(
-                        "service_ivg0qcg",
-                        "template_copubfa",
-                        e.target,
-                        "user_EckY85oTLIO3ozLS0j5GF"
-                      )
-                      .then(
-                        (result) => {
-                          console.log(result);
-                        },
-                        (error) => {
-                          console.log(error);
-                        }
-                      );
-                  }}
-                >
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  emailjs
+                    .sendForm(
+                      "service_ivg0qcg",
+                      "template_copubfa",
+                      e.target,
+                      "user_EckY85oTLIO3ozLS0j5GF"
+                    )
+                    .then(
+                      (result) => {
+                        console.log(result);
+                      },
+                      (error) => {
+                        console.log(error);
+                      }
+                    );
+                  e.target.reset();
+                }}
+              >
+                <div className="input-group">
                   <input
                     type="email"
                     placeholder="Enter your email address"
@@ -103,8 +104,8 @@ function Footer() {
                       <i className="fa fa-paper-plane"></i>
                     </button>
                   </div>
-                </form>
-              </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
