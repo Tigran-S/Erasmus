@@ -10,18 +10,23 @@ export default function Write() {
     title: "",
     text: "",
     image: null,
+    category: "Projects",
     file: "",
+    location: null,
+    startingDate: null,
+    duration: null,
   });
+  console.log(post);
   const location = useLocation();
   useEffect(() => {
     if (location?.state) {
       setPost(location?.state);
     }
   }, [location]);
-  console.log(post);
   const navigate = useNavigate();
   const imageHandler = (e) => {
     const reader = new FileReader();
+    console.log(e.target.files[0]);
     reader.onload = () => {
       if (reader.readyState === 2) {
         setPost((prev) => ({ ...prev, image: reader.result }));
@@ -41,8 +46,11 @@ export default function Write() {
         post.text,
         post.image,
         date,
-        e.target.options.value,
-        post.file
+        post.category,
+        post.file,
+        post.location,
+        post.startingDate,
+        post.duration
       );
     }
     navigate("/");
@@ -73,6 +81,7 @@ export default function Write() {
             accept="image/*"
             style={{ display: "none" }}
             name="photo"
+            multiple
             onChange={imageHandler}
             src={post?.image}
           />
@@ -112,12 +121,52 @@ export default function Write() {
               name="options"
               className="form-control"
               aria-label="Default select example"
+              onChange={(e) => {
+                setPost((prev) => ({ ...prev, category: e.target.value }));
+              }}
             >
               <option>Projects</option>
               <option>News</option>
               <option>Participants</option>
             </select>
           </div>
+          {post.category === "Projects" && (
+            <div>
+              <input
+                name="locationOptions"
+                className="form-control"
+                aria-label="Default select example"
+                onChange={(e) => {
+                  setPost((prev) => ({ ...prev, location: e.target.value }));
+                }}
+                placeholder="location..."
+              />
+              <input
+                name="startingDateOptions"
+                className="form-control"
+                aria-label="Default select example"
+                onChange={(e) => {
+                  setPost((prev) => ({
+                    ...prev,
+                    startingDate: e.target.value,
+                  }));
+                }}
+                placeholder="date..."
+              />
+              <input
+                name="durationOptions"
+                className="form-control"
+                aria-label="Default select example"
+                onChange={(e) => {
+                  setPost((prev) => ({
+                    ...prev,
+                    duration: e.target.value,
+                  }));
+                }}
+                placeholder="duration..."
+              />
+            </div>
+          )}
         </div>
         <div className="writeFormGroup">
           <textarea

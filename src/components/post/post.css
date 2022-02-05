@@ -17,6 +17,21 @@
   flex-direction: column;
   align-items: center;
 }
+.additionalInfo {
+  grid-area: info;
+  background-color: whitesmoke;
+  border-radius: 7px;
+}
+.fa-calendar-alt {
+  color: #ff5f6d;
+  color: -webkit-linear-gradient(to right, #ff5f6d, #ffc371);
+  color: linear-gradient(to right, #ff5f6d, #ffc371);
+}
+.additionalInfo {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
 
 .postCat {
   font-family: "Varela Round", Arial, Helvetica, sans-serif;

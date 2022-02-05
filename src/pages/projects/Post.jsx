@@ -13,16 +13,24 @@ export default function Post({ posts }) {
       {projects.map((post) => {
         return (
           <div className="post" key={post.id}>
-            <img className="postImg" src={post.image} alt="" />
-            <div className="postInfo">
-              <span className="postTitle">
-                <Link to={`/post/${post.id}`} className="link">
-                  {post.title}
-                </Link>
-              </span>
-              <hr />
-              <span className="postDate">{post.date}</span>
-            </div>
+            <Link to={`/post/${post.id}`} className="link">
+              <img className="postImg" src={post.image} alt="" />
+              <div className="additionalInfo">
+                <p className="info">
+                  <i className="fas fa-map-marker-alt"></i>
+                  {post.location}
+                </p>
+                <p className="info">
+                  <i className="fas fa-calendar-alt"></i>
+                  {post.startingDate}
+                </p>
+              </div>
+              <div className="postInfo">
+                <span className="postTitle">{post.title}</span>
+                <hr />
+              </div>
+            </Link>
+            <span className="postDate postInfo">{post.date}</span>
             <p className="postDesc">{post.text}</p>
           </div>
         );

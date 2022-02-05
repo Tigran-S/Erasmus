@@ -58,13 +58,33 @@ export default function SinglePost({ currentUser, posts }) {
                   </div>
                 )}
               </h1>
+
               <div className="singlePostInfo">
                 <span>{el.date}</span>
               </div>
               <p className="singlePostDesc">{el.text}</p>
-              <a href={el.file} target="_blank" rel="noreferrer" download>
-                Info
-              </a>
+              {el.category === "Projects" && (
+                <div className="additionalInfoS">
+                  <p className="infoS">
+                    <i className="fas fa-map-marker-alt"></i>
+                    {"     "}
+                    Event will take place in {el.location}
+                  </p>
+                  <p className="infoS">
+                    <i className="fas fa-calendar-alt"></i>
+                    {"     "}Starting Date: {el.startingDate}
+                  </p>
+                  <p className="infoS">
+                    <i className="fas fa-business-time"></i>
+                    {"     "}Duration: {el.duration} days
+                  </p>
+                </div>
+              )}
+              {el?.file && (
+                <a href={el.file} target="_blank" rel="noreferrer" download>
+                  Info
+                </a>
+              )}
               <div>
                 <FacebookShareButton
                   style={{ outline: "none" }}

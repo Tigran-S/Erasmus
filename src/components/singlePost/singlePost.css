@@ -13,6 +13,14 @@
   border-radius: 5px;
   object-fit: cover;
 }
+.additionalInfoS {
+  display: flex;
+  justify-content: space-between;
+}
+.infoS {
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
 
 .singlePostTitle {
   text-align: center;

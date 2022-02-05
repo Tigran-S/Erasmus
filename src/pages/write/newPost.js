@@ -5,7 +5,17 @@ import { storage } from "../../firebase";
 import { getDownloadURL, uploadBytesResumable, ref } from "firebase/storage";
 
 export const usersCollectionRef = collection(db, "posts");
-export const addNewPost = async (title, text, image, date, category, file) => {
+export const addNewPost = async (
+  title,
+  text,
+  image,
+  date,
+  category,
+  file,
+  location,
+  startingDate,
+  duration
+) => {
   await addDoc(usersCollectionRef, {
     title,
     text,
@@ -13,6 +23,9 @@ export const addNewPost = async (title, text, image, date, category, file) => {
     date,
     category,
     file,
+    location,
+    startingDate,
+    duration,
   });
 };
 export const uploadFile = (file, setPost) => {
