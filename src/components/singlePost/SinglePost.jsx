@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -15,6 +16,7 @@ import "./singlePost.css";
 import "../../pages/about/about.css";
 
 export default function SinglePost({ currentUser, posts }) {
+  const [num, setNum] = useState(0);
   const { id } = useParams();
   const post = posts.filter((el) => {
     return el.id === id;
@@ -32,13 +34,45 @@ export default function SinglePost({ currentUser, posts }) {
       window.location.reload();
     }, 1000);
   };
+
+  const handleLeftClick = (length) => {
+    if (num - 1 >= 0) {
+      setNum((num) => num - 1);
+    } else {
+      setNum(length - 1);
+    }
+  };
+  const handleRightClick = (length) => {
+    if (num + 1 < length) {
+      setNum((num) => num + 1);
+    } else {
+      setNum(0);
+    }
+  };
   return (
     <>
       {post.map((el) => {
+        console.log(el.image);
         return (
           <div className="singlePost" key={el.id}>
             <div className="singlePostWrapper">
-              <img className="singlePostImg" src={el.image} alt="" />
+              <img className="singlePostImg" src={el.image[num]} alt="" />
+              {el.image.length > 1 && (
+                <>
+                  <i
+                    className="fas fa-chevron-circle-left"
+                    onClick={() => {
+                      handleLeftClick(el.image.length);
+                    }}
+                  ></i>
+                  <i
+                    className="fas fa-chevron-circle-right"
+                    onClick={() => {
+                      handleRightClick(el.image.length);
+                    }}
+                  ></i>
+                </>
+              )}
               <h1 className="singlePostTitle">
                 {el.title}
                 {currentUser && (

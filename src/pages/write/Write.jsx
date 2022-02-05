@@ -1,4 +1,4 @@
-import { addNewPost, updatePost, uploadFile } from "./newPost";
+import { addNewPost, updatePost, uploadFile, uploadImage } from "./newPost";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./write.css";
@@ -9,14 +9,14 @@ export default function Write() {
   const [post, setPost] = useState({
     title: "",
     text: "",
-    image: null,
+    image: [],
     category: "Projects",
     file: "",
     location: null,
     startingDate: null,
     duration: null,
   });
-  console.log(post);
+  const [prog, setProg] = useState({ image: 0, file: 0 });
   const location = useLocation();
   useEffect(() => {
     if (location?.state) {
@@ -24,17 +24,14 @@ export default function Write() {
     }
   }, [location]);
   const navigate = useNavigate();
-  const imageHandler = (e) => {
-    const reader = new FileReader();
-    console.log(e.target.files[0]);
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setPost((prev) => ({ ...prev, image: reader.result }));
-      }
-    };
-    reader.readAsDataURL(e.target.files[0]);
-  };
 
+  const imageHandler = (e) => {
+    const images = [];
+    for (let i = 0; i < e.target.files.length; i++) {
+      images.push(e.target.files[i]);
+    }
+    uploadImage(images, setPost, setProg);
+  };
   const doSubmit = (e) => {
     e.preventDefault();
     const date = new Date().toDateString();
@@ -53,6 +50,7 @@ export default function Write() {
         post.duration
       );
     }
+    setProg({ image: 0, file: 0 });
     navigate("/");
     setTimeout(() => {
       window.location.reload();
@@ -60,7 +58,7 @@ export default function Write() {
   };
   const fileHandler = (e) => {
     const file = e.target.files[0];
-    uploadFile(file, setPost);
+    uploadFile(file, setPost, setProg);
   };
 
   return (
@@ -73,8 +71,9 @@ export default function Write() {
       <form className="writeForm" onSubmit={doSubmit}>
         <div className="writeFormGroup">
           <label htmlFor="fileInput">
-            <i className="writeIcon fas fa-plus"></i>
-          </label>
+            <i className="writeIcon fas fa-plus"></i>{" "}
+          </label>{" "}
+          {prog.image !== 0 && prog.image}
           <input
             id="fileInput"
             type="file"
@@ -94,7 +93,8 @@ export default function Write() {
                 cursor: "pointer",
               }}
             ></i>
-          </label>
+          </label>{" "}
+          {prog.file !== 0 && prog.file}
           <input
             id="fileInput2"
             type="file"

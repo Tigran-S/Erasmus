@@ -5,6 +5,7 @@
 .singlePostWrapper {
   padding: 20px;
   padding-right: 0;
+  position: relative;
 }
 
 .singlePostImg {
@@ -12,6 +13,23 @@
   height: 300px;
   border-radius: 5px;
   object-fit: cover;
+  display: block;
+}
+.fa-chevron-circle-left {
+  position: absolute;
+  bottom: 470px;
+  left: 30px;
+  cursor: pointer;
+  color: rgb(133, 64, 224);
+  font-size: 25px;
+}
+.fa-chevron-circle-right {
+  position: absolute;
+  bottom: 470px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 25px;
+  color: tomato;
 }
 .additionalInfoS {
   display: flex;

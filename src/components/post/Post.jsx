@@ -6,10 +6,11 @@ export default function Post({ posts }) {
   return (
     <div className="posts">
       {posts?.map((post) => {
+        console.log(post.image);
         return (
           <div className="post" key={post.id}>
             <Link to={`/post/${post.id}`} className="link">
-              <img className="postImg" src={post.image} alt="" />
+              <img className="postImg" src={post.image[0]} alt="" />
               {post.category === "Projects" && (
                 <div className="additionalInfo">
                   <p className="info">

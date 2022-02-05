@@ -28,7 +28,7 @@ const LoginForm = ({ setUser }) => {
   };
 
   return (
-    <div className="form">
+    <div className="form" style={{ marginBottom: "20px" }}>
       <h1>Login</h1>
       <form
         onSubmit={(e) => handleSubmit(e, setErrors, login, schema, doSubmit)}

@@ -5,6 +5,31 @@ import { storage } from "../../firebase";
 import { getDownloadURL, uploadBytesResumable, ref } from "firebase/storage";
 
 export const usersCollectionRef = collection(db, "posts");
+export const uploadImage = (images, setPost, setProg) => {
+  if (!images[0]) return;
+  images.forEach((image) => {
+    const storageRef = ref(storage, `/files/${image.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, image);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const prog = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        console.log(prog);
+        setProg((prev) => ({ ...prev, image: prog }));
+      },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          setPost((prev) => ({ ...prev, image: [...prev.image, url] }));
+        });
+      }
+    );
+  });
+};
 export const addNewPost = async (
   title,
   text,
@@ -28,7 +53,7 @@ export const addNewPost = async (
     duration,
   });
 };
-export const uploadFile = (file, setPost) => {
+export const uploadFile = (file, setPost, setProg) => {
   if (!file) return;
   const storageRef = ref(storage, `/files/${file.name}`);
   const uploadTask = uploadBytesResumable(storageRef, file);
@@ -39,6 +64,7 @@ export const uploadFile = (file, setPost) => {
         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
       );
       console.log(prog);
+      setProg((prev) => ({ ...prev, file: prog }));
     },
     (err) => {
       console.log(err);
@@ -51,6 +77,7 @@ export const uploadFile = (file, setPost) => {
     }
   );
 };
+
 export const updatePost = async (id, updatePost) => {
   const postDoc = doc(db, "posts", id);
   const newFields = { ...updatePost };
