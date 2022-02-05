@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import "./write.css";
 import { useNavigate } from "react-router-dom";
 
-//TODO:  add multiple image download function
 export default function Write() {
   const [post, setPost] = useState({
     title: "",
