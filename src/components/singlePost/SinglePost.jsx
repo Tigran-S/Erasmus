@@ -52,7 +52,6 @@ export default function SinglePost({ currentUser, posts }) {
   return (
     <>
       {post.map((el) => {
-        console.log(el.image);
         return (
           <div className="singlePost" key={el.id}>
             <div className="singlePostWrapper">
@@ -116,7 +115,7 @@ export default function SinglePost({ currentUser, posts }) {
               )}
               {el?.file && (
                 <a href={el.file} target="_blank" rel="noreferrer" download>
-                  Info
+                  Infopack
                 </a>
               )}
               <div>
