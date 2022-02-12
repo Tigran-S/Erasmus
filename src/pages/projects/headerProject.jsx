@@ -1,13 +1,17 @@
 import React from "react";
-import "./projects.css";
+import "../../components/header/header.css";
 
-const HeaderProject = ({ name, src }) => {
+const HeaderProject = ({ name, src, color }) => {
   return (
-    <div className="headerP">
-      <div className="headerTitlesP">
-        <span className="headerTitleP">{name}</span>
-      </div>
-      <img className="headerImgP" src={src} alt="" />
+    <div className="header">
+      {name !== "Projects" && (
+        <div className="headerTitles ">
+          <span className="headerTitleLg" style={{ color: color }}>
+            {name}
+          </span>
+        </div>
+      )}
+      <img className="headerImg" src={src} alt="" />
     </div>
   );
 };

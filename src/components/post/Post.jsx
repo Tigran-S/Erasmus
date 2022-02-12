@@ -6,7 +6,6 @@ export default function Post({ posts }) {
   return (
     <div className="posts">
       {posts?.map((post) => {
-        console.log(post.image);
         return (
           <div className="post" key={post.id}>
             <Link to={`/post/${post.id}`} className="link">

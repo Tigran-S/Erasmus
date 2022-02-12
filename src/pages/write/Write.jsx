@@ -115,7 +115,9 @@ export default function Write() {
             }}
             autoFocus={true}
           />
-          <div>
+        </div>
+        <div>
+          <div className="selectOptions">
             <select
               name="options"
               className="form-control"
@@ -130,7 +132,7 @@ export default function Write() {
             </select>
           </div>
           {post.category === "Projects" && (
-            <div>
+            <div id="projectInputs">
               <input
                 name="locationOptions"
                 className="form-control"

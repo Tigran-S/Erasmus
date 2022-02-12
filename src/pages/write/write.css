@@ -70,3 +70,23 @@
   display: flex;
   align-items: center;
 }
+
+#projectInputs {
+  display: flex !important;
+
+  width: 50%;
+}
+.selectOptions {
+  width: 50%;
+}
+@media screen and (max-width: 900px) {
+  .writeImg {
+    margin-left: 30px;
+  }
+  .writeFormGroup {
+    margin-left: 30px;
+  }
+  .writeText {
+    height: 30vh;
+  }
+}

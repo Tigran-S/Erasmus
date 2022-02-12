@@ -1,16 +1,14 @@
 import React from "react";
 import Sidebar from "./../../components/sidebar/Sidebar";
 import HeaderProject from "./../projects/headerProject";
-import "../projects/projects.css";
+import "../../components/header/header.css";
 import Post from "./Post";
+import news from "./news.jpeg";
 
 const News = ({ posts }) => {
   return (
     <>
-      <HeaderProject
-        name="NEWS"
-        src="https://images.pexels.com/photos/4560150/pexels-photo-4560150.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-      />
+      <HeaderProject name="NEWS" color="rgb(255 255 255)" src={news} />
       <div className="home">
         <Post posts={posts} />
         <Sidebar />

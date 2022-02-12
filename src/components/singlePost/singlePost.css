@@ -81,6 +81,7 @@
   color: #666;
   font-size: 18px;
   line-height: 25px;
+  text-align: justify;
 }
 
 .singlePostDesc::first-letter {
@@ -94,4 +95,18 @@
 }
 .shareButton {
   outline: "none";
+}
+@media screen and (max-width: 900px) {
+  .singlePostWrapper {
+    padding: 0;
+  }
+  .singlePostDesc {
+    margin: 0 10px 30px 10px;
+  }
+  .fa-chevron-circle-left {
+    left: 15px;
+  }
+  .additionalInfoS {
+    display: block;
+  }
 }

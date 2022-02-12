@@ -1,7 +1,3 @@
-.header {
-  margin-top: 60px;
-}
-
 .headerTitles {
   display: flex;
   flex-direction: column;
@@ -10,21 +6,47 @@
   color: #444;
 }
 
+.headerImg {
+  width: 100%;
+  height: 450px;
+  margin-top: 10px;
+  object-fit: cover;
+}
+.header {
+  position: relative;
+}
 .headerTitleSm {
   position: absolute;
-  top: 18%;
-  font-size: 20px;
+  top: 20%;
+  color: rgb(163, 35, 189);
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .headerTitleLg {
   position: absolute;
-  top: 20%;
-  font-size: 100px;
+  top: 40%;
+  font-size: 3rem;
+  color: rgb(22, 29, 134);
+  font-weight: 800;
 }
 
-.headerImg {
-  width: 100%;
-  height: 450px;
-  margin-top: 80px;
-  object-fit: cover;
+@media screen and (min-device-width: 1025px) and (max-device-width: 1200px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) and (min-device-width: 320px) and (max-device-width: 480px) and (min-device-width: 769px) and (max-device-width: 1024px) and (min-device-width: 481px) and (max-device-width: 768px) {
+  .root {
+    outline: none;
+  }
+}
+
+@media screen and (max-device-width: 768px) {
+  .sidebar {
+    display: none !important;
+  }
+  .headerImg {
+    height: auto;
+  }
+}
+@media screen and (max-device-width: 600px) {
+  .headerTitleLg {
+    font-size: 2.5rem;
+  }
 }

@@ -21,19 +21,19 @@ const About = () => {
                 development of knowledge-based economy in Armenia.
               </p>
               <div className="button">
-                <Link to="/contact">Contact</Link>
-                <span>
-                  {"           "}
+                <div>
+                  <Link to="/contact">Contact</Link>
+                </div>
+                <div className="picNumber">
                   <a
                     href="https://firebasestorage.googleapis.com/v0/b/creative-youth-4442d.appspot.com/o/files%2FErasmus.docx?alt=media&token=c323e591-9a80-42ca-9826-154cbe9a872a"
                     target="_blank"
                     rel="noreferrer"
                     download
-                    download
                   >
                     PIC/ID Number
                   </a>
-                </span>
+                </div>
               </div>
             </div>
             <div className="social">

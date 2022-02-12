@@ -16,7 +16,6 @@ export const uploadImage = (images, setPost, setProg) => {
         const prog = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-        console.log(prog);
         setProg((prev) => ({ ...prev, image: prog }));
       },
       (err) => {
@@ -63,7 +62,6 @@ export const uploadFile = (file, setPost, setProg) => {
       const prog = Math.round(
         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
       );
-      console.log(prog);
       setProg((prev) => ({ ...prev, file: prog }));
     },
     (err) => {
@@ -71,7 +69,6 @@ export const uploadFile = (file, setPost, setProg) => {
     },
     () => {
       getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-        console.log(url);
         setPost((prev) => ({ ...prev, file: url }));
       });
     }
