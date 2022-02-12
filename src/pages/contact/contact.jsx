@@ -14,6 +14,9 @@ const schema = {
   fbLink: Joi.string().required().label("Facebook Link"),
 };
 const Contact = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [register, setRegister] = useState({
     email: "",
     phoneNumber: "",
