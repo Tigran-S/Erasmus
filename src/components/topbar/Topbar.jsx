@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import "./topbar.css";
@@ -33,9 +33,9 @@ export default function Topbar({ currentUser }) {
         </a>
       )}
 
-      <a href="/#" className="icon">
+      <Link to="#" className="icon">
         <i className="fa fa-bars"></i>
-      </a>
+      </Link>
     </div>
   );
 }
