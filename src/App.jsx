@@ -21,7 +21,7 @@ import Footer from "./components/footer/footer";
 
 function App() {
   const [user, setUser] = useState({});
-  const currentUser = user?.email === "tigran_sargsyan@mail.ru";
+  const currentUser = user?.email === "musho112244@gmail.com";
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   });

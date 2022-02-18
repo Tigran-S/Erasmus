@@ -37,10 +37,10 @@ const Contact = () => {
     e.preventDefault();
     emailjs
       .sendForm(
-        "service_ivg0qcg",
-        "template_xahmqao",
+        "service_my7s8oy",
+        "template_ccfajfm",
         e.target,
-        "user_EckY85oTLIO3ozLS0j5GF"
+        "user_cq8YvCIjFgYcAihDGWf2j"
       )
       .then(
         (result) => {

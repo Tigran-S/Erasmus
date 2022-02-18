@@ -72,7 +72,7 @@ export default function Write() {
           <label htmlFor="fileInput">
             <i className="writeIcon fas fa-plus"></i>{" "}
           </label>{" "}
-          {prog.image !== 0 && prog.image}
+          {prog.image !== 0 && `${prog.image}%`}
           <input
             id="fileInput"
             type="file"
@@ -93,7 +93,7 @@ export default function Write() {
               }}
             ></i>
           </label>{" "}
-          {prog.file !== 0 && prog.file}
+          {prog.file !== 0 && `${prog.file}%`}
           <input
             id="fileInput2"
             type="file"

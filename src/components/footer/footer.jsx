@@ -55,7 +55,7 @@ function Footer() {
                 </Link>
               </li>
               <li className="mb-2">
-                <a href="tel: +374-99-111-671" className="text-muted">
+                <a href="tel: +374-93-112-244" className="text-muted">
                   CALL US
                 </a>
               </li>
@@ -70,10 +70,10 @@ function Footer() {
                   e.preventDefault();
                   emailjs
                     .sendForm(
-                      "service_ivg0qcg",
-                      "template_copubfa",
+                      "service_my7s8oy",
+                      "template_qzb0xpm",
                       e.target,
-                      "user_EckY85oTLIO3ozLS0j5GF"
+                      "user_cq8YvCIjFgYcAihDGWf2j"
                     )
                     .then(
                       (result) => {

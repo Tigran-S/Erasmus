@@ -29,7 +29,7 @@ const About = () => {
                 </div>
                 <div className="picNumber">
                   <a
-                    href="https://firebasestorage.googleapis.com/v0/b/creative-youth-4442d.appspot.com/o/files%2FErasmus.docx?alt=media&token=c323e591-9a80-42ca-9826-154cbe9a872a"
+                    href="https://firebasestorage.googleapis.com/v0/b/creative-youth-2f5e6.appspot.com/o/files%2FErasmus.docx?alt=media&token=def8a13c-2c04-44f5-9206-9fa49dbf9293"
                     target="_blank"
                     rel="noreferrer"
                     download
