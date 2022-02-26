@@ -1,5 +1,6 @@
 {
   "name": "blog",
+  "homepage": "http://creativeyouth.am/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
