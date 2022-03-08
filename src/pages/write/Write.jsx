@@ -11,9 +11,9 @@ export default function Write() {
     image: [],
     category: "Projects",
     file: "",
-    location: null,
-    startingDate: null,
-    duration: null,
+    location: "",
+    startingDate: "",
+    duration: "",
   });
   const [prog, setProg] = useState({ image: 0, file: 0 });
   const location = useLocation();
@@ -121,6 +121,7 @@ export default function Write() {
             <select
               name="options"
               className="form-control"
+              value={post.category}
               aria-label="Default select example"
               onChange={(e) => {
                 setPost((prev) => ({ ...prev, category: e.target.value }));
@@ -136,6 +137,7 @@ export default function Write() {
               <input
                 name="locationOptions"
                 className="form-control"
+                value={post.location}
                 aria-label="Default select example"
                 onChange={(e) => {
                   setPost((prev) => ({ ...prev, location: e.target.value }));
@@ -146,6 +148,7 @@ export default function Write() {
                 name="startingDateOptions"
                 className="form-control"
                 aria-label="Default select example"
+                value={post.startingDate}
                 onChange={(e) => {
                   setPost((prev) => ({
                     ...prev,
@@ -157,6 +160,7 @@ export default function Write() {
               <input
                 name="durationOptions"
                 className="form-control"
+                value={post.duration}
                 aria-label="Default select example"
                 onChange={(e) => {
                   setPost((prev) => ({

@@ -14,6 +14,7 @@ import {
 } from "react-share";
 import "./singlePost.css";
 import "../../pages/about/about.css";
+import { Helmet } from "react-helmet";
 
 export default function SinglePost({ currentUser, posts }) {
   const [num, setNum] = useState(0);
@@ -54,6 +55,10 @@ export default function SinglePost({ currentUser, posts }) {
       {post.map((el) => {
         return (
           <div className="singlePost" key={el.id}>
+            <Helmet>
+              <meta property="og:image" content={el.image} />
+              <meta property="og:title" content={el.title} />
+            </Helmet>
             <div className="singlePostWrapper">
               <img className="singlePostImg" src={el.image[num]} alt="" />
               {el.image.length > 1 && (
@@ -123,6 +128,8 @@ export default function SinglePost({ currentUser, posts }) {
                   style={{ outline: "none" }}
                   className="shareButton"
                   url={window.location.href}
+                  image={el.image[0]}
+                  title={el.title}
                 >
                   <FacebookIcon className="shareIcon"></FacebookIcon>
                 </FacebookShareButton>
@@ -130,12 +137,15 @@ export default function SinglePost({ currentUser, posts }) {
                   style={{ outline: "none" }}
                   className="shareButton"
                   url={window.location.href}
+                  title={el.title}
                 >
                   <LinkedinIcon className="shareIcon"></LinkedinIcon>
                 </LinkedinShareButton>
                 <TwitterShareButton
                   style={{ outline: "none" }}
                   url={window.location.href}
+                  title={el.title}
+                  image={el.image[0]}
                 >
                   <TwitterIcon className="shareIcon"></TwitterIcon>
                 </TwitterShareButton>

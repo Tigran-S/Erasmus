@@ -17,9 +17,14 @@ export default function Topbar({ currentUser }) {
       setTopNav();
     }
   };
+  const handleClick = () => {
+    if (topNav === "responsive") {
+      setTopNav();
+    }
+  };
 
   return (
-    <div className={`topnav ${topNav}`} onClick={myFunc}>
+    <div className={`topnav ${topNav}`} onClick={handleClick}>
       <NavLink to="/">HOME</NavLink>
       <NavLink to="/projects">PROJECTS</NavLink>
       <NavLink to="/news">NEWS</NavLink>
@@ -33,7 +38,7 @@ export default function Topbar({ currentUser }) {
         </a>
       )}
 
-      <Link to="#" className="icon">
+      <Link to="#" className="icon" onClick={myFunc}>
         <i className="fa fa-bars"></i>
       </Link>
     </div>

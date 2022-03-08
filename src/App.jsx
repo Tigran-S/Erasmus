@@ -31,7 +31,11 @@ function App() {
   useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs(usersCollectionRef);
-      setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setPosts(
+        data.docs
+          .map((doc) => ({ ...doc.data(), id: doc.id }))
+          .sort((doc1, doc2) => new Date(doc2.date) - new Date(doc1.date))
+      );
     };
     getPosts();
   }, []);
